@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>保健師のためのClaude活用アイデア100選</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal:    #0d9488;
+      --teal-l:  #ccfbf1;
+      --sky:     #0284c7;
+      --sky-l:   #e0f2fe;
+      --green:   #16a34a;
+      --green-l: #dcfce7;
+      --violet:  #7c3aed;
+      --violet-l:#ede9fe;
+      --amber:   #d97706;
+      --amber-l: #fef3c7;
+      --rose:    #e11d48;
+      --rose-l:  #ffe4e6;
+      --indigo:  #4338ca;
+      --indigo-l:#e0e7ff;
+      --cyan:    #0891b2;
+      --cyan-l:  #cffafe;
+      --bg:      #f0fdfa;
+      --card-bg: #ffffff;
+      --text:    #134e4a;
+      --sub:     #5eaaa0;
+      --border:  #b2d8d4;
+      --shadow:  rgba(13,148,136,.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #ccfbf1 0%, #e0f2fe 50%, #ede9fe 100%);
+      padding: 64px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 15% 30%, rgba(13,148,136,.15) 0%, transparent 55%),
+        radial-gradient(circle at 85% 70%, rgba(2,132,199,.12) 0%, transparent 55%),
+        radial-gradient(circle at 50% 90%, rgba(124,58,237,.10) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #0d9488, #0284c7);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.25;
+      background: linear-gradient(135deg, #0d9488, #0284c7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: #5eaaa0;
+      max-width: 580px;
+      margin: 0 auto 32px;
+    }
+    .hero-count {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .hero-count-item { text-align: center; }
+    .hero-count-num {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #0d9488, #0284c7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .hero-count-label { font-size: .75rem; color: #5eaaa0; margin-top: 2px; }
+    .emoji-deco { font-size: 2rem; margin-bottom: 10px; display: block; }
+
+    /* ===== CONTROLS ===== */
+    .controls {
+      max-width: 1200px;
+      margin: 32px auto 0;
+      padding: 0 20px;
+    }
+    .search-wrap {
+      position: relative;
+      max-width: 480px;
+      margin: 0 auto 24px;
+    }
+    .search-wrap svg {
+      position: absolute; left: 14px; top: 50%;
+      transform: translateY(-50%);
+      width: 18px; height: 18px;
+      color: #5eaaa0; pointer-events: none;
+    }
+    .search-input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      font-size: .95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .search-input::placeholder { color: #5eaaa0; }
+    .search-input:focus {
+      border-color: #0d9488;
+      box-shadow: 0 0 0 3px rgba(13,148,136,.15);
+    }
+    .filter-wrap {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin-bottom: 16px;
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      font-size: .82rem; font-weight: 600;
+      color: var(--sub); cursor: pointer;
+      transition: all .18s;
+    }
+    .filter-btn:hover { border-color: #0d9488; color: #0d9488; }
+    .filter-btn.active {
+      background: linear-gradient(135deg, #0d9488, #0284c7);
+      border-color: transparent; color: #fff;
+      box-shadow: 0 2px 10px rgba(13,148,136,.35);
+    }
+    .result-count {
+      text-align: center; font-size: .82rem;
+      color: #5eaaa0; margin-bottom: 24px;
+    }
+
+    /* ===== GRID ===== */
+    .grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      padding: 20px 18px 16px;
+      display: flex; flex-direction: column; gap: 10px;
+      cursor: pointer;
+      transition: transform .18s, box-shadow .18s, border-color .18s;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; border-radius: 16px 16px 0 0;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px var(--shadow);
+      border-color: #99d6d1;
+    }
+    .card.copied { animation: pulse .4s ease; }
+    @keyframes pulse {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .card-num {
+      font-size: .72rem; font-weight: 800; color: #fff;
+      background: linear-gradient(135deg, #0d9488, #0284c7);
+      border-radius: 6px;
+      min-width: 28px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .card-tag {
+      font-size: .7rem; font-weight: 700;
+      padding: 2px 9px; border-radius: 999px;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .card-text {
+      font-size: .9rem; font-weight: 600;
+      color: var(--text); line-height: 1.55; flex: 1;
+    }
+    .card-prompt {
+      font-size: .78rem; color: var(--sub);
+      background: var(--bg); border-radius: 8px;
+      padding: 8px 10px; line-height: 1.5;
+    }
+    .card-footer {
+      display: flex; align-items: center; justify-content: flex-end;
+    }
+    .copy-hint {
+      font-size: .72rem; color: #5eaaa0;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .copy-hint svg { width: 13px; height: 13px; }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: linear-gradient(135deg, #0d9488, #0284c7);
+      color: #fff; font-size: .85rem; font-weight: 700;
+      padding: 10px 24px; border-radius: 999px;
+      box-shadow: 0 4px 20px rgba(13,148,136,.4);
+      opacity: 0;
+      transition: transform .3s ease, opacity .3s ease;
+      pointer-events: none; z-index: 9999;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    footer {
+      text-align: center; padding: 24px;
+      font-size: .78rem; color: #5eaaa0;
+      border-top: 1px solid var(--border);
+    }
+    .card.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="emoji-deco">🏥💙</span>
+  <div class="hero-badge">保健師 × CLAUDE</div>
+  <h1>保健師のための<br>Claude活用アイデア100選</h1>
+  <p class="hero-sub">記録作成・保健指導・地域連携・業務効率化…現場で奮闘する保健師がClaudeを使ってもっとスマートに・丁寧に・持続可能に働くためのプロンプトアイデア集です。</p>
+  <div class="hero-count">
+    <div class="hero-count-item">
+      <div class="hero-count-num">100</div>
+      <div class="hero-count-label">個のアイデア</div>
+    </div>
+    <div class="hero-count-item">
+      <div class="hero-count-num">8</div>
+      <div class="hero-count-label">カテゴリ</div>
+    </div>
+    <div class="hero-count-item">
+      <div class="hero-count-num">∞</div>
+      <div class="hero-count-label">活用の可能性</div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input class="search-input" type="text" id="searchInput" placeholder="キーワードで絞り込む（例：訪問、糖尿病、地区診断…）" />
+  </div>
+  <div class="filter-wrap" id="filterWrap"></div>
+  <p class="result-count" id="resultCount"></p>
+</div>
+
+<main class="grid" id="grid"></main>
+<div class="toast" id="toast">📋 コピーしました！</div>
+
+<footer>
+  <p>保健師のための Claude 活用アイデア 100選 ✦ カードをクリックするとプロンプトをコピーできます</p>
+</footer>
+
+<script>
+const categories = [
+  { id:"doc",    label:"📋 記録・文書作成",   color:"#0d9488", light:"#ccfbf1" },
+  { id:"consult",label:"🏥 健康相談・指導",   color:"#0284c7", light:"#e0f2fe" },
+  { id:"maternal",label:"👶 母子保健",        color:"#db2777", light:"#fce7f3" },
+  { id:"elderly", label:"🧓 高齢者保健",      color:"#7c3aed", light:"#ede9fe" },
+  { id:"edu",    label:"🏃 健康教育・啓発",   color:"#16a34a", light:"#dcfce7" },
+  { id:"data",   label:"📊 データ・統計",     color:"#d97706", light:"#fef3c7" },
+  { id:"collab", label:"🤝 地域連携・調整",   color:"#0891b2", light:"#cffafe" },
+  { id:"work",   label:"💼 業務効率化",       color:"#4338ca", light:"#e0e7ff" },
+];
+
+const ideas = [
+  // 📋 記録・文書作成 (1-13)
+  { id:1,  cat:"doc", title:"家庭訪問記録を簡潔にまとめる", prompt:"以下の家庭訪問メモをSOAP形式（主観的情報・客観的情報・アセスメント・計画）に整理して、公式記録として使える文章にしてください。メモ：[ここに貼り付け]" },
+  { id:2,  cat:"doc", title:"保健指導計画書のテンプレートを作成", prompt:"[対象者の状況：年齢・疾患・生活背景]を踏まえた保健指導計画書のテンプレートを作成してください。長期目標・短期目標・支援内容・評価時期を含む形式で。" },
+  { id:3,  cat:"doc", title:"事業報告書の文章を整える", prompt:"以下の事業報告の下書きを、自治体の公式文書として適切な表現・構成に整えてください。数値データを効果的に示す文章にしてください。下書き：[ここに貼り付け]" },
+  { id:4,  cat:"doc", title:"ケースカンファレンスの資料を作成", prompt:"[ケースの概要：年齢・主訴・家族背景・支援経過]をもとに、多職種カンファレンスで使う情報共有シートを作成してください。関係者が5分で概要を把握できる形式で。" },
+  { id:5,  cat:"doc", title:"支援計画書の文章を書く", prompt:"[対象者情報・課題・支援目標]をもとに、自治体書式に合わせた支援計画書の本文を作成してください。具体的・測定可能な目標設定で。" },
+  { id:6,  cat:"doc", title:"地区診断レポートをまとめる", prompt:"以下の地区データ（[人口動態・疾病状況・社会資源など]）をもとに、地区診断レポートの考察部分を作成してください。健康課題の優先度と根拠を明確にして。" },
+  { id:7,  cat:"doc", title:"アセスメントシートのテンプレートを作成", prompt:"[対象：乳幼児/高齢者/精神障害者など]の初回アセスメントシートのテンプレートを作成してください。必要な情報収集項目・リスク評価・支援方針を網羅した形式で。" },
+  { id:8,  cat:"doc", title:"業務引き継ぎ書を作成する", prompt:"[担当ケース名・支援経過・現在の課題・今後の支援方針]をもとに、次の担当者がスムーズに引き継げる引き継ぎ書を作成してください。" },
+  { id:9,  cat:"doc", title:"健康診断結果の説明文を作成", prompt:"健康診断で[検査項目・数値]の結果が出た対象者（[年齢・性別・既往歴]）への説明文書を、わかりやすい言葉で作成してください。改善策も含めて。" },
+  { id:10, cat:"doc", title:"月次報告書を効率よく仕上げる", prompt:"今月の業務実績（[訪問件数・相談件数・事業実施状況など]）をもとに、上司・議会向けの月次報告書を作成してください。課題と翌月の対応策も含めて。" },
+  { id:11, cat:"doc", title:"関係機関への連絡文書を作成", prompt:"[医療機関名/機関種別]への[連絡内容・目的]を伝える公式文書を作成してください。情報提供の範囲と目的を明確にした形式で。" },
+  { id:12, cat:"doc", title:"訪問記録の抜け漏れをチェック", prompt:"以下の訪問記録を確認し、公式記録として不足している情報・不明瞭な表現・追記すべき点を指摘してください。記録：[ここに貼り付け]" },
+  { id:13, cat:"doc", title:"保健指導の評価記録をまとめる", prompt:"[期間]の保健指導（[指導内容・指導回数]）を行った対象者（[基本情報]）の評価記録を、目標達成度・変化・今後の方針を含めてまとめてください。" },
+
+  // 🏥 健康相談・指導 (14-26)
+  { id:14, cat:"consult", title:"高血圧の保健指導資料を作成", prompt:"[年齢・性別・血圧値・生活習慣]の対象者向けに、高血圧改善のための保健指導資料を作成してください。減塩・運動・服薬の3点を中心に、具体的で実践しやすい内容で。" },
+  { id:15, cat:"consult", title:"糖尿病予防の生活指導内容を作成", prompt:"HbA1c [数値]・空腹時血糖 [数値]の[年齢]代[性別]への糖尿病予防指導の内容を作成してください。食事・運動・体重管理の具体的な目標設定と指導ポイントを。" },
+  { id:16, cat:"consult", title:"禁煙指導のトーキングポイントを作る", prompt:"[喫煙歴・本数・禁煙意欲段階]の対象者への禁煙指導のポイントをまとめてください。動機付けから禁煙方法の選択肢、禁断症状への対処まで段階的に。" },
+  { id:17, cat:"consult", title:"メンタルヘルス相談時の声かけ例文を作る", prompt:"初回相談で[主訴・状況]を話してくれた対象者への、信頼関係を築きながら状況を丁寧に把握するための声かけ例文を作ってください。傾聴を意識した表現で。" },
+  { id:18, cat:"consult", title:"生活習慣病予防の指導内容を整理", prompt:"特定保健指導（[積極的支援/動機付け支援]）対象者（[年齢・腹囲・検査値]）への初回面接の指導内容と、行動目標設定のサポート方法を整理してください。" },
+  { id:19, cat:"consult", title:"栄養指導の資料を作成する", prompt:"[年齢・性別・身長・体重・食生活の特徴]の対象者向けに、無理なく続けられる食生活改善の指導資料を作成してください。具体的な食品例・量・調理方法を含めて。" },
+  { id:20, cat:"consult", title:"難病患者への支援計画を考える", prompt:"[疾患名・病期・家族構成・在宅での困りごと]の対象者への支援計画を作成してください。医療・福祉・日常生活支援の多面的な視点で、本人の意向を重視した計画で。" },
+  { id:21, cat:"consult", title:"アルコール依存症の支援内容を整理", prompt:"[現在の状況・家族の状況・本人の意識]を踏まえ、アルコール依存症への保健師としての支援方針と、本人・家族それぞれへのアプローチ方法を整理してください。" },
+  { id:22, cat:"consult", title:"認知症初期の相談対応方法をまとめる", prompt:"「最近物忘れが増えた」と相談に来た[年齢]の[本人/家族]への初回対応フローを作成してください。情報収集・受診勧奨・地域資源の案内を含む実践的な内容で。" },
+  { id:23, cat:"consult", title:"虐待リスクアセスメントのポイントを整理", prompt:"[対象：児童/高齢者/障害者]の虐待リスクアセスメントで確認すべき観察ポイント・聴取項目・緊急度判断の基準を整理してください。チェックリスト形式で。" },
+  { id:24, cat:"consult", title:"精神保健相談の対応マニュアルを作る", prompt:"住民から寄せられる精神保健に関する相談（[よくある相談内容：家族の様子がおかしい/本人が引きこもりなど]）への初期対応マニュアルを作成してください。" },
+  { id:25, cat:"consult", title:"服薬管理の指導ポイントをまとめる", prompt:"[年齢・疾患・服薬数・生活状況]の対象者が服薬を継続できるよう、飲み忘れ防止・副作用の自己観察・医師への相談タイミングなどの指導ポイントをまとめてください。" },
+  { id:26, cat:"consult", title:"運動指導プログラムを作成する", prompt:"[年齢・疾患・体力レベル・生活環境]の対象者向けに、安全に続けられる運動プログラムを作成してください。目標設定・種目・強度・頻度・注意点を含む形式で。" },
+
+  // 👶 母子保健 (27-39)
+  { id:27, cat:"maternal", title:"産後うつのスクリーニング活用法をまとめる", prompt:"EPDS（エジンバラ産後うつ病質問票）を活用した産後うつスクリーニングの実施方法・結果の解釈・ハイリスクケースへの対応フローを整理してください。" },
+  { id:28, cat:"maternal", title:"育児支援家庭訪問のポイントを整理", prompt:"特定妊婦・養育支援が必要な家庭への訪問前チェックリストと、訪問時の観察ポイント・情報収集項目・支援方針の判断基準を整理してください。" },
+  { id:29, cat:"maternal", title:"新生児訪問の記録テンプレートを作成", prompt:"新生児訪問（生後28日以内）で使用する訪問記録テンプレートを作成してください。母子の健康状態・授乳状況・養育環境・保護者の状態・フォローアップ計画を含む形式で。" },
+  { id:30, cat:"maternal", title:"妊産婦への保健指導内容を整理する", prompt:"[妊娠週数・初産/経産・気になること]の妊婦への保健指導内容を整理してください。栄養・運動・心のケア・産後の準備・地域資源の案内を含む包括的な内容で。" },
+  { id:31, cat:"maternal", title:"乳幼児健診の問診票の見方を整理する", prompt:"[月齢・健診の種類]の乳幼児健診で、問診票の回答から読み取るべきリスクサインと、気になる回答があった場合の対応方針を整理してください。" },
+  { id:32, cat:"maternal", title:"育児不安を抱える母親への声かけ例文", prompt:"「育児がつらい・自信がない」と打ち明けてくれた[産後・月数]の母親への、寄り添いながら支援につなげる声かけ例文を作ってください。孤立させないことを重視して。" },
+  { id:33, cat:"maternal", title:"離乳食指導の資料を作成する", prompt:"[月齢]の赤ちゃんを持つ保護者向けに、離乳食の進め方・食材の選び方・量の目安・アレルギー対応についてわかりやすく説明した指導資料を作成してください。" },
+  { id:34, cat:"maternal", title:"特定妊婦のアセスメントを行う", prompt:"[年齢・妊娠週数・状況：若年/単身/経済的困窮/DV疑いなど]の特定妊婦のリスクアセスメントと、産前から始める支援計画の骨子を作成してください。" },
+  { id:35, cat:"maternal", title:"多胎育児家庭への支援内容を整理", prompt:"[双子/三つ子・月齢・家族構成]の多胎育児家庭が直面する課題と、保健師として提供すべき支援・活用できる地域資源・関係機関との連携方法を整理してください。" },
+  { id:36, cat:"maternal", title:"外国人母子への支援のポイントをまとめる", prompt:"[国籍・在住年数・言語能力・文化的背景]の外国人母子家庭への保健師支援で注意すべき文化的配慮・言語サポートの活用・必要な社会資源の案内方法を整理してください。" },
+  { id:37, cat:"maternal", title:"子育て相談の対応マニュアルを作る", prompt:"電話・窓口で寄せられる子育て相談（[よくある相談：夜泣き・食事拒否・発達の遅れ・親の疲弊など]）への初期対応と、専門機関への橋渡しタイミングを含むマニュアルを作成して。" },
+  { id:38, cat:"maternal", title:"発達に遅れのある子の親への声かけ", prompt:"[月齢・気になる点]の発達に遅れが疑われる子を持つ保護者に、健診後に受診・専門支援へつなぐ際の丁寧な説明と声かけの例文を作成してください。" },
+  { id:39, cat:"maternal", title:"養育支援訪問の計画を立てる", prompt:"[家庭状況・支援歴・課題]の養育困難家庭への今後3ヶ月の訪問支援計画（訪問頻度・各回の支援内容・評価指標・他機関との連携）を作成してください。" },
+
+  // 🧓 高齢者保健 (40-52)
+  { id:40, cat:"elderly", title:"介護予防教室のプログラムを作成する", prompt:"[地域の特性・参加者の年齢層・会場・回数]を踏まえた介護予防教室の全体プログラム（各回のテーマ・内容・所要時間・担当者・必要物品）を作成してください。" },
+  { id:41, cat:"elderly", title:"フレイル予防の指導内容を整理する", prompt:"[年齢・フレイル評価の結果・生活状況]の対象者向けに、身体的・精神的・社会的フレイル予防のための具体的な生活指導内容と、取り組みやすい目標設定を作成してください。" },
+  { id:42, cat:"elderly", title:"認知症予防の啓発資料を作成する", prompt:"地域の高齢者（[年齢層・参加者像]）向けの認知症予防啓発資料を作成してください。科学的に根拠のある予防法を、わかりやすく実践的にまとめた内容で。" },
+  { id:43, cat:"elderly", title:"独居高齢者の見守り支援計画を作成", prompt:"[年齢・疾患・ADL・キーパーソンの有無・近隣関係]の独居高齢者の見守り支援計画を作成してください。保健師・民生委員・地域包括・近隣の役割分担を含む形式で。" },
+  { id:44, cat:"elderly", title:"高齢者虐待の早期発見チェックリスト", prompt:"在宅高齢者への訪問時・窓口相談時に使用する高齢者虐待の早期発見チェックリストを作成してください。身体的・心理的・経済的・ネグレクト・性的虐待の各サインを含めて。" },
+  { id:45, cat:"elderly", title:"退院後の在宅支援計画を考える", prompt:"[疾患・ADL・家族構成・退院後の生活目標]の対象者の退院後支援計画を作成してください。医療・介護・保健の役割分担と、生活再建に向けた段階的な支援内容を含む形式で。" },
+  { id:46, cat:"elderly", title:"老老介護家庭への支援内容を整理", prompt:"[介護者・被介護者の年齢・疾患・介護内容・介護者の状態]の老老介護家庭への支援で、レスパイト・介護負担軽減・緊急時対応・社会資源活用の観点から支援内容を整理してください。" },
+  { id:47, cat:"elderly", title:"認知症カフェの企画書を作成する", prompt:"[地域・開催頻度・対象・場所・スタッフ体制]の認知症カフェの企画書を作成してください。目的・プログラム内容・運営体制・関係機関との連携・評価方法を含む形式で。" },
+  { id:48, cat:"elderly", title:"高齢者の生活機能評価のポイントをまとめる", prompt:"訪問時の高齢者の生活機能（ADL・IADL・認知機能・社会参加）を観察・評価するためのポイントと、評価結果に応じた支援判断の基準を整理してください。" },
+  { id:49, cat:"elderly", title:"介護者のレスパイト支援内容を整理", prompt:"[介護者の状況・介護期間・心身の疲弊度]の介護者が利用できるレスパイトサービスの種類・申請方法・保健師としての支援のポイントをわかりやすく整理してください。" },
+  { id:50, cat:"elderly", title:"終末期の相談対応のポイントをまとめる", prompt:"在宅での看取りを希望する[疾患・家族構成]の家庭からの相談への初期対応・支援のポイントと、医療・介護・保健の連携体制の整え方を整理してください。" },
+  { id:51, cat:"elderly", title:"熱中症予防の高齢者への啓発内容", prompt:"独居・外出困難な高齢者への熱中症予防のための啓発文書を作成してください。生活環境・水分補給・緊急時の対処法を含む、シンプルでわかりやすい内容で。" },
+  { id:52, cat:"elderly", title:"高齢者の転倒予防指導の資料を作成", prompt:"[年齢・転倒リスク因子・生活環境]の高齢者向けに、転倒予防のための住環境整備・日常の運動・薬の見直しについてわかりやすく説明した指導資料を作成してください。" },
+
+  // 🏃 健康教育・啓発 (53-64)
+  { id:53, cat:"edu", title:"健康教室の指導案を作成する", prompt:"[テーマ・対象者・時間・会場規模]の健康教室の指導案を作成してください。導入・展開・まとめの流れ、使用する資料・グループワーク・評価方法を含む形式で。" },
+  { id:54, cat:"edu", title:"健康だよりの記事を書く", prompt:"[テーマ：熱中症/感染症/生活習慣病など]についての広報誌・健康だより用の記事（400〜600字）を作成してください。住民が関心を持てる導入と、実践的なアドバイスを含む内容で。" },
+  { id:55, cat:"edu", title:"感染症予防の啓発チラシの文章を作る", prompt:"[感染症名・対象地域・季節]の感染症予防啓発チラシの文章を作成してください。感染経路・予防法・受診の目安をわかりやすく簡潔に伝える内容で。" },
+  { id:56, cat:"edu", title:"生活習慣病予防のパンフレット内容を作る", prompt:"[対象：40〜60代/働き盛り/子育て世代など]向けの生活習慣病予防パンフレットの内容を作成してください。食事・運動・禁煙・定期健診のポイントを視覚的に伝わる構成で。" },
+  { id:57, cat:"edu", title:"食育教室のプログラムを作成する", prompt:"[対象：乳幼児の親/小学生/高齢者など・回数・時間]の食育教室の全体プログラムを作成してください。各回のテーマ・内容・体験活動・持ち帰られる知識・評価方法を含む形式で。" },
+  { id:58, cat:"edu", title:"メンタルヘルス啓発の資料を作成する", prompt:"[職場/学校/地域]のメンタルヘルス啓発研修で使う資料の内容を作成してください。ストレスのしくみ・セルフケア・相談窓口の案内を含む、参加者が行動変容できる構成で。" },
+  { id:59, cat:"edu", title:"男性向け健康セミナーの内容を考える", prompt:"健診受診率が低い[年齢層]男性を対象とした健康セミナーの内容を企画してください。男性が関心を持ちやすいアプローチで、受診行動・生活習慣改善につながる構成で。" },
+  { id:60, cat:"edu", title:"SNS用の健康情報発信文を作る", prompt:"自治体の[SNS種別：X/Instagram/Facebook]で発信する[テーマ]の健康情報の投稿文を作成してください。住民が読みたくなる導入・わかりやすい本文・行動を促すCTAを含む形式で。" },
+  { id:61, cat:"edu", title:"子育てサークルの活動計画を立てる", prompt:"[地域・月齢層・参加者数・場所]の子育てサークルの3ヶ月間の活動計画を作成してください。各回のテーマ・内容・準備物・保健師の関わり方・参加者へのメリットを含む形式で。" },
+  { id:62, cat:"edu", title:"職場の健康教育プログラムを作成する", prompt:"[業種・規模・対象者・主な健康課題]の職場向け健康教育プログラムを作成してください。年間計画・各回のテーマ・実施形式・評価指標を含む包括的な内容で。" },
+  { id:63, cat:"edu", title:"運動習慣化のための教室内容を考える", prompt:"[対象：運動習慣のない[年齢層]・開催回数・場所]の運動習慣化教室のプログラムを作成してください。継続できる仕組みと、家に帰っても続けられる内容を中心に。" },
+  { id:64, cat:"edu", title:"地域住民向け健康講話の構成を考える", prompt:"[テーマ・聴衆：[年齢層・人数]・時間：[分]]の健康講話の構成を考えてください。住民が聴き入り、帰宅後も行動できる「つかみ・本論・まとめ・行動提案」の流れで。" },
+
+  // 📊 データ・統計 (65-74)
+  { id:65, cat:"data", title:"地区診断のためのデータ整理", prompt:"地区診断に必要な[データ種別：人口動態/患者統計/健診データ/介護保険データ]の収集先・読み取り方・保健課題の抽出方法を整理してください。優先度の高い指標はどれかも教えて。" },
+  { id:66, cat:"data", title:"健診受診率向上策を考える", prompt:"[地域の]特定健診受診率が[現在の割合]と低迷しています。受診しない理由の分析方法と、対象者の属性別（若年/高齢/男性/低所得層など）の受診率向上策を提案してください。" },
+  { id:67, cat:"data", title:"保健事業の評価指標を整理する", prompt:"[事業名]の評価指標（アウトカム指標・アウトプット指標・プロセス指標）を整理してください。データの収集方法・計測タイミング・目標値の設定の考え方も含めて。" },
+  { id:68, cat:"data", title:"保健事業の優先課題を絞り込む", prompt:"以下の地区の健康課題（[リスト]）の中から、PRECEDE-PROCEEDモデルやブライアント基準などを参考に、優先度の高い課題を絞り込む方法を教えてください。" },
+  { id:69, cat:"data", title:"アンケートの設計方法を教えてもらう", prompt:"[事業名・目的]のアンケートを設計したいです。聴くべき項目・回答形式の選び方・バイアスを避ける質問文の書き方・分析しやすい設計のポイントを教えてください。" },
+  { id:70, cat:"data", title:"保健事業の企画書を作成する", prompt:"[事業名・背景・対象者・目的]の保健事業の企画書を作成してください。課題の根拠となるデータ・目的・対象・方法・スケジュール・予算・評価方法を含む行政文書形式で。" },
+  { id:71, cat:"data", title:"統計データのプレゼン資料を作成する", prompt:"[データの内容]を首長・議会・住民に説明するためのプレゼン資料の構成を作ってください。データを視覚的に伝え、対策の必要性を納得してもらえる構成で。" },
+  { id:72, cat:"data", title:"保健事業の費用対効果を説明する", prompt:"[事業名]の費用対効果を上司・財政担当者に説明するための資料を作成してください。予防による医療費削減効果・QOL向上・社会的コストの観点から整理した内容で。" },
+  { id:73, cat:"data", title:"年度末の事業評価報告書を作成する", prompt:"[事業名]の年度末評価報告書を作成してください。計画対比の実績・事業の成果と課題・次年度に向けた改善策を含む、上司・関係機関に提出できる形式で。" },
+  { id:74, cat:"data", title:"他地域との健康指標を比較分析する", prompt:"[地域名]の[指標：死亡率/有病率/健診受診率など]を全国平均・県平均・近隣自治体と比較分析する際の着目ポイントと、比較から課題を導き出すための考え方を教えてください。" },
+
+  // 🤝 地域連携・調整 (75-86)
+  { id:75, cat:"collab", title:"多職種連携会議のアジェンダを作成", prompt:"[テーマ：[ケース名/地域課題]・参加者：医療/介護/保健/福祉担当者・時間]の多職種連携会議のアジェンダを作成してください。全員が発言しやすく、合意形成できる進め方で。" },
+  { id:76, cat:"collab", title:"医療機関への情報提供文書を作成", prompt:"[医療機関名]への[対象者の情報・相談内容・保健師の見立て・依頼事項]を伝える情報提供文書を作成してください。簡潔かつ必要な情報が網羅された公式文書の形式で。" },
+  { id:77, cat:"collab", title:"地域ネットワーク会議の企画書を作成", prompt:"[テーマ・対象機関・目的・開催頻度]の地域ネットワーク会議の企画書を作成してください。各機関の参加メリット・役割分担・情報共有の範囲・継続的な運営方法を含む形式で。" },
+  { id:78, cat:"collab", title:"民生委員への情報提供のポイントをまとめる", prompt:"民生委員と連携して[対象：独居高齢者/ハイリスク家庭]の見守りを行うための情報共有の方法・共有すべき情報の範囲・個人情報保護への配慮方法を整理してください。" },
+  { id:79, cat:"collab", title:"住民参加型健康づくりの方法を考える", prompt:"[地域特性・住民の関心・既存資源]を踏まえ、住民が主体的に参加できる健康づくりの仕組みを提案してください。立ち上げ・継続・評価の各段階での保健師の関わり方も含めて。" },
+  { id:80, cat:"collab", title:"要支援者の情報共有シートを作成", prompt:"地域の関係機関（保健・医療・介護・福祉・民生委員）が共通で使える要支援者の情報共有シートを作成してください。個人情報保護に配慮しつつ、支援に必要な情報が一覧できる形式で。" },
+  { id:81, cat:"collab", title:"自治会・町内会との連携方法を考える", prompt:"自治会・町内会を健康づくり活動のパートナーとして巻き込むための、最初のアプローチ方法・提案内容・継続的な関係づくりのコツを具体的に教えてください。" },
+  { id:82, cat:"collab", title:"ケアマネジャーへの連絡内容を整理", prompt:"[対象者の情報・保健師としての見立て・依頼内容]をケアマネジャーに伝える電話・訪問連絡の内容を整理してください。互いの役割を踏まえた協力関係を築く話し方で。" },
+  { id:83, cat:"collab", title:"NPO・ボランティアとの連携方法を考える", prompt:"[健康課題・地域特性]の解決に向けて、NPO・ボランティア団体と連携する際の探し方・アプローチ方法・役割分担・継続的な協力体制の構築方法を整理してください。" },
+  { id:84, cat:"collab", title:"関係機関との定期会議の設計をする", prompt:"保健・医療・福祉の[関係機関名]との定期連携会議を効果的に運営するための開催頻度・アジェンダの設計・情報共有のルール・記録の方法を提案してください。" },
+  { id:85, cat:"collab", title:"社会資源マップの作成方法を考える", prompt:"[地域名・対象：子育て/高齢者/障害者など]の支援に使える社会資源マップを作成する手順と、定期的に更新・活用するための仕組みを考えてください。" },
+  { id:86, cat:"collab", title:"住民説明会の資料と進め方を準備する", prompt:"[テーマ：感染症/保健事業の説明/健康施策]について住民に説明する説明会の資料構成・想定される質問と回答例・住民の不安を和らげる説明の工夫を準備してください。" },
+
+  // 💼 業務効率化 (87-100)
+  { id:87,  cat:"work", title:"訪問計画を効率よく立てる", prompt:"今月の訪問対象（[ケース数・地域・優先度]）を踏まえ、移動効率・緊急度・家族の在宅時間を考慮した訪問スケジュールの組み方と、優先ケースの判断基準を整理してください。" },
+  { id:88,  cat:"work", title:"電話相談の記録を効率よくまとめる", prompt:"以下の電話相談のやり取りメモを、5W1Hを押さえた公式記録として整理してください。対応内容・今後の支援方針・フォローアップ期日も含めて。メモ：[ここに貼り付け]" },
+  { id:89,  cat:"work", title:"業務の棚卸しと優先順位をつける", prompt:"現在担当している業務リスト（[リスト]）の中から、緊急度と重要度でマトリクス分類し、今週取り組むべき優先業務を整理してください。後回しにしても良い業務も示して。" },
+  { id:90,  cat:"work", title:"新人保健師の育成計画を作成する", prompt:"[新人の経験・配属部署]の新任保健師の1年間のOJT育成計画を作成してください。月別の習得目標・担当業務の段階的な引き渡し・メンターとのフォロー体制を含む形式で。" },
+  { id:91,  cat:"work", title:"保健師のバーンアウト予防対策を考える", prompt:"支援職特有のバーンアウト（燃え尽き症候群）の早期サインと、個人・チーム・組織それぞれの予防対策を整理してください。保健師自身のセルフケア方法も含めて。" },
+  { id:92,  cat:"work", title:"困難ケースの対応を一緒に考える", prompt:"[ケースの概要：支援を拒否している/複合的な問題を抱えている/暴言がある等]の困難ケースについて、今後の支援方針と具体的なアプローチ方法を一緒に考えてください。" },
+  { id:93,  cat:"work", title:"委託業務の仕様書を作成する", prompt:"[委託事業名・目的・対象・業務内容]の委託仕様書を作成してください。業務の範囲・実施方法・報告義務・個人情報の取扱い・評価基準を含む行政文書形式で。" },
+  { id:94,  cat:"work", title:"ICTを活用した業務改善を考える", prompt:"保健師業務（訪問記録/相談対応/健康教育/地域連携）の中で、ICTツールを活用して効率化・質向上できる部分を特定し、導入方法と注意点を提案してください。" },
+  { id:95,  cat:"work", title:"保健師の研修計画を立てる", prompt:"[チームの人数・年齢層・スキル課題]の保健師チームの年間研修計画を立ててください。内部研修・外部研修・OJTを組み合わせた、実践に直結する学びの場を設計してください。" },
+  { id:96,  cat:"work", title:"ヒヤリハット事例を整理・共有する", prompt:"[事案の概要]のヒヤリハット事例を、原因分析・再発防止策・チームへの共有方法の観点から整理してください。責任追及でなく学習と改善につながる形式で。" },
+  { id:97,  cat:"work", title:"保健師としてのキャリアパスを考える", prompt:"[経験年数・現在のポジション・強み・関心領域]の保健師のキャリアパスを一緒に考えてください。専門性の深化・管理職・他機関連携など、様々なキャリアの可能性と準備すべきことを。" },
+  { id:98,  cat:"work", title:"上司への業務改善提案書を作成する", prompt:"[改善したい業務・問題点・提案内容]について、上司に承認してもらうための業務改善提案書を作成してください。現状の課題・改善案・期待される効果・必要なリソースを含む形式で。" },
+  { id:99,  cat:"work", title:"チームミーティングのアジェンダを作成", prompt:"週次・月次の保健師チームミーティングのアジェンダテンプレートを作成してください。情報共有・困難ケース相談・業務報告・研修予定を効率よく行える30〜60分構成で。" },
+  { id:100, cat:"work", title:"保健師の仕事の魅力を言語化する", prompt:"「保健師という仕事の魅力・やりがい・社会的意義」を、就職説明会・学生への講義・採用面接で話すための、心に響く言葉で語れる文章を一緒に作ってください。" },
+];
+
+// CATEGORY MAP
+const catMap = {};
+categories.forEach(c => { catMap[c.id] = c; });
+
+// RENDER FILTERS
+const filterWrap = document.getElementById('filterWrap');
+const allBtn = document.createElement('button');
+allBtn.className = 'filter-btn active';
+allBtn.textContent = '✨ すべて';
+allBtn.dataset.cat = 'all';
+filterWrap.appendChild(allBtn);
+categories.forEach(c => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn';
+  btn.textContent = c.label;
+  btn.dataset.cat = c.id;
+  filterWrap.appendChild(btn);
+});
+
+// RENDER CARDS
+const grid = document.getElementById('grid');
+ideas.forEach(idea => {
+  const cat = catMap[idea.cat];
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.cat = idea.cat;
+  card.dataset.text = (idea.title + ' ' + idea.prompt).toLowerCase();
+
+  card.innerHTML = `
+    <style>.card[data-cat="${idea.cat}"]::before { background: ${cat.color}; }</style>
+    <div class="card-header">
+      <span class="card-num">${idea.id}</span>
+      <span class="card-tag" style="background:${cat.light};color:${cat.color};">${cat.label}</span>
+    </div>
+    <div class="card-text">${idea.title}</div>
+    <div class="card-prompt">${idea.prompt}</div>
+    <div class="card-footer">
+      <span class="copy-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        クリックしてコピー
+      </span>
+    </div>
+  `;
+  card.addEventListener('click', () => {
+    navigator.clipboard.writeText(idea.prompt).then(() => {
+      showToast();
+      card.classList.add('copied');
+      setTimeout(() => card.classList.remove('copied'), 400);
+    });
+  });
+  grid.appendChild(card);
+});
+
+// FILTER LOGIC
+let currentCat = 'all', currentQuery = '';
+function applyFilter() {
+  const cards = document.querySelectorAll('.card');
+  let count = 0;
+  cards.forEach(card => {
+    const catMatch = currentCat === 'all' || card.dataset.cat === currentCat;
+    const textMatch = !currentQuery || card.dataset.text.includes(currentQuery);
+    if (catMatch && textMatch) { card.classList.remove('hidden'); count++; }
+    else card.classList.add('hidden');
+  });
+  document.getElementById('resultCount').textContent =
+    currentCat === 'all' && !currentQuery
+      ? `全 ${count} 個のアイデア`
+      : `${count} 個のアイデアが見つかりました`;
+}
+filterWrap.addEventListener('click', e => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentCat = e.target.dataset.cat;
+  applyFilter();
+});
+document.getElementById('searchInput').addEventListener('input', e => {
+  currentQuery = e.target.value.trim().toLowerCase();
+  applyFilter();
+});
+
+// TOAST
+const toast = document.getElementById('toast');
+let toastTimer;
+function showToast() {
+  clearTimeout(toastTimer);
+  toast.classList.add('show');
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+}
+applyFilter();
+</script>
+</body>
+</html>
